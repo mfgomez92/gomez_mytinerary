@@ -1,12 +1,10 @@
-import {Carousel} from 'react-bootstrap'
-import {Container} from 'react-bootstrap'
-import {Row} from 'react-bootstrap'
+import {Carousel, Container, Row} from 'react-bootstrap'
 
 import CarouselFoto from './CarouselFoto'
 
-const CarouselSection = ({elCarrusel}) =>{
+const CarouselHome = ({elCarrusel}) =>{
      return (
-         <Carousel indicators={false}  fade={true}>             
+         <Carousel indicators={false}>             
              {elCarrusel.map((array, index)=>{
                 return (
                 <Carousel.Item key={index}>
@@ -21,4 +19,4 @@ const CarouselSection = ({elCarrusel}) =>{
      )
 }
 
-export default CarouselSection
+export default CarouselHome

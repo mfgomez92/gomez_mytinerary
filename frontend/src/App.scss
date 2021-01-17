@@ -3,7 +3,6 @@
 body{
   height: 100vh;
 }
-
 .row{
   width: inherit;
   margin: 0px;
@@ -27,29 +26,32 @@ body{
 .nav-link:hover{
   background-color: rgba($color: #000000, $alpha: .10);
 }
-.contenedor{
-  position: relative;
-  display: inline-block;
+.fondo{
+  background-image: url("./assets/millennialsviaje.jpg");
+  background-repeat: no-repeat;
+  height: 87vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
 }
 .hover-lento:hover{
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 .hover-lento{
   transition: transform 0.5s linear 0.2s;;
 }
 .centrado{
-  background-color: rgba($color: #000000, $alpha: .5);
+  background-color: rgba($color: #000000, $alpha: .25);
   text-align: right;
-  padding: 30px;
+  padding: 20px;
   border-radius: 25px;
   color: white;
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  transform: translate(-50%, -50%);
+  height: fit-content;
+  align-self: center;
 }
-.centrado h4{
-  font-size: 3vw;
+.centrado p{
+  font-size: 2rem;
+  font-weight: bold;
 }
 .foto_carrusel{
   background-repeat: no-repeat;

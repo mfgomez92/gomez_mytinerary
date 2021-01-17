@@ -9,13 +9,13 @@ const BarraNav=()=>{
 
             <Navbar bg="light" variant="light" expand="lg" className="mb-2 p-2">
                 <Container >
-                    <Row >
+                    <Row className="justify-content-between align-items-center">
                         <Col md={4}>
                             <NavLink to="/" className="navbar-brand">
                                 <img  alt="" src="./assets/Mytinerary-logo.png" className="d-inline-block align-top"/>
                             </NavLink>
                         </Col>
-                        <Col md={{ span: 4, offset: 4 }} className="align-self-end">
+                        <Col md={{ span: 4}} className="text-right">
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav>

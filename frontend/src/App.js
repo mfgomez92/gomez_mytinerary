@@ -1,5 +1,5 @@
 import Header from './componentes/Header'
-import Section from './componentes/Section'
+import Home from './componentes/Home'
 import Cities from './componentes/Cities'
 import React from "react";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/" component={Section} />
+          <Route exact path="/" component={Home} />
           <Route path="/cities" component={Cities} />
         </Switch>
 

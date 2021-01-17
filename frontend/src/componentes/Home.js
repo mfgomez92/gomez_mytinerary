@@ -1,8 +1,8 @@
 import {Container, Row} from 'react-bootstrap'
-import CarouselSection from './Carousel'
+import CarouselHome from './Carousel'
 import CallToAction from './CallToAction'
 
-const Section = () =>{
+const Home = () =>{
     const carrusel = [
                     [
                     {   direccion:"./assets/beirut-libano.jpg",
@@ -77,9 +77,9 @@ const Section = () =>{
                 <h3>Popular MYtineraries</h3>
             </Row>
         </Container>
-        <CarouselSection elCarrusel= {carrusel}/>
+        <CarouselHome elCarrusel= {carrusel}/>
         </>
     )
 }
 
-export default Section
+export default Home
