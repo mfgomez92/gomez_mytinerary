@@ -38,7 +38,7 @@ body{
   transform: scale(1.01);
 }
 .hover-lento{
-  transition: transform 0.5s linear 0.2s;;
+  transition: transform 0.1s linear 0.3s;;
 }
 .centrado{
   background-color: rgba($color: #000000, $alpha: .25);
@@ -50,7 +50,7 @@ body{
   align-self: center;
 }
 .centrado p{
-  font-size: 2rem;
+  font-size: 2em;
   font-weight: bold;
 }
 .foto_carrusel{
