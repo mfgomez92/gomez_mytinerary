@@ -1,4 +1,4 @@
-const Cities = () =>{
+const CitiesPage = () =>{
     return(
         <>
             <h1>Soy Cities</h1>
@@ -6,4 +6,4 @@ const Cities = () =>{
     )
 }
 
-export default Cities
+export default CitiesPage

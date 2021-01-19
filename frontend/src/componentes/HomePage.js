@@ -2,7 +2,7 @@ import {Container, Row} from 'react-bootstrap'
 import CarouselHome from './Carousel'
 import CallToAction from './CallToAction'
 
-const Home = () =>{
+const HomePage = () =>{
     const carrusel = [
                     [
                     {   direccion:"./assets/beirut-libano.jpg",
@@ -82,4 +82,4 @@ const Home = () =>{
     )
 }
 
-export default Home
+export default HomePage
