@@ -14,8 +14,8 @@ const CitiesPage = () =>{
     
     const filtrado = e =>{
         var valor= e.target.value
-        var ciudadesFiltradas= cities.filter(({ciudad})=>{
-            return ciudad.toUpperCase().indexOf(valor.toUpperCase().trim()) === 0})
+        var ciudadesFiltradas= cities.filter(({cityName})=>{
+            return cityName.toUpperCase().indexOf(valor.toUpperCase().trim()) === 0})
             setCitiesFiltradas(ciudadesFiltradas)
     }  
 

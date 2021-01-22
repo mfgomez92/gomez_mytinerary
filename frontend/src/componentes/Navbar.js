@@ -7,7 +7,7 @@ const BarraNav=()=>{
     return(
         <>
 
-            <Navbar bg="light" variant="light" expand="lg" className="mb-2 p-2">
+            <Navbar variant="light" expand="lg" className="mb-2 p-2 bg-navbar">
                 <Container >
                     <Row className="justify-content-between align-items-center">
                         <Col md={4}>

@@ -6,8 +6,9 @@ const cityController= require('../controllers/cityController')
 
 router.route('/cities')
 .get(cityController.allCities)
+.post(cityController.newCity)
 
-router.route('/cities/:cityName')
+router.route('/cities/:cityCode')
 .get(cityController.singleCity)
 
 

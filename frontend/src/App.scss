@@ -2,10 +2,14 @@
 
 body{
   height: 100vh;
+  background-color: rgba(237,22,80,0.1);
 }
 .row{
   width: inherit;
   margin: 0px;
+}
+.bg-navbar{
+  background-color: rgba(241, 93, 133, 0.12);
 }
 .navbar-brand {
   padding: 0px !important;
@@ -13,6 +17,7 @@ body{
 }
 .navbar{
   justify-self: start;
+ 
 }
 .navbar-nav {
   align-items:center;
