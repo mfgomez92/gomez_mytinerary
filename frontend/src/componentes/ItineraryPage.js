@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react"
+//import {Link} from "react-router-dom"
+//import {Button} from 'react-bootstrap'
+import Header from './Header'
+import SectionItinerary from './SectionItinerary'
 
 const ItineraryPage =(props)=>{
     const [cityItinerary, setCityItenerary]= useState([])
@@ -13,7 +17,19 @@ const ItineraryPage =(props)=>{
     },[])
 
   
-    return <img src={cityItinerary.imgCity}/>
+    return(
+        <>
+        <Header/>
+        <SectionItinerary cityItinerary={cityItinerary}/>
+        {/* <div className="container text-center mt-5">
+            <Link to="/">
+                <Button variant="secondary" className="btn-my" >
+                    Go Home
+                </Button>
+            </Link>
+        </div> */}
+       </> 
+    ) 
     
 }
 export default ItineraryPage

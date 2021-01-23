@@ -1,4 +1,3 @@
-import Header from './componentes/Header'
 import HomePage from './componentes/HomePage'
 import CitiesPage from './componentes/CitiesPage'
 import ItineraryPage from './componentes/ItineraryPage';
@@ -13,7 +12,6 @@ function App() {
   return (
  <>
     <Router>
-      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/cities" component={CitiesPage} />
