@@ -2,6 +2,7 @@ import Header from './Header'
 import SectionHome from './SectionHome'
 import {Container, Row} from 'react-bootstrap'
 import CarouselHome from './Carousel'
+import Footer from './Footer'
 
 const HomePage = () =>{
     const carrusel = [
@@ -74,12 +75,13 @@ const HomePage = () =>{
         <>
         <Header/>
         <SectionHome />
-        <Container  className="bg-secondary my-3 rounded">
+        <Container  className="bg-secondary mt-5 mb-3 rounded">
             <Row className="justify-content-center py-3 text-white">
-                <h1>Popular MYtineraries</h1>
+                <h1 className="display-2">Popular MYtineraries</h1>
             </Row>
         </Container>
         <CarouselHome elCarrusel= {carrusel}/>
+        <Footer/>
         </>
     )
 }

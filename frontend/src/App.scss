@@ -17,7 +17,7 @@ body {
     //line-height: 65px;
     text-align: center;
     z-index: 10;
-    background-color: rgba(237, 22, 79, 0.425);
+    background-color: rgba(237, 22, 79, 0.7);
 }
 .nav div.logo {
     float: left;
@@ -56,7 +56,7 @@ body {
     text-decoration: none;
     color: #fff;
     line-height: 65px;
-    font-size: 2.4rem;
+    font-size: 1.7vw;
     height: 60px;
 }
 .nav div.main_list ul li a:hover {
@@ -298,6 +298,7 @@ body {
     left: 0;
     right: 0;
     background: url('./assets/millennialsviaje.jpg') center center;
+    background-repeat: no-repeat;
     opacity: 1;
 }
 
@@ -311,7 +312,7 @@ body {
     z-index: 5; 
 }
 .sectionHome{
-    background-color: rgba($color: #000000, $alpha: .25);
+    background-color: rgba($color: #000000, $alpha: .45);
     text-align: right;
     padding: 20px;
     border-radius: 10px;
@@ -354,7 +355,6 @@ body {
     height: 40vh;
     display: flex;
     justify-content: center;
-    align-items: end;
     padding: 10%;
     position: relative;
     z-index: 5; 
@@ -392,16 +392,15 @@ body {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    box-shadow: 3px 3px 7px rgba(237, 22, 79, 0.80);
+    box-shadow: 5px 5px 9px rgba(237, 22, 79, 0.80);
 }
 //Section Itinerary
 .sectionI {
     width: 100%;
-    height: 60vh;
     display: flex;
     justify-content: center;
-    align-items: end;
-    padding: 10%;   
+    align-items:flex-end;
+    padding: 12% 10% 3% 10%;   
 }
 .sectionI::before{
     content: "";
@@ -412,33 +411,46 @@ body {
     left: 0;
     right: 0;
     background-image: url('./assets/itinerary.jpg');
+    height: 80vh;
     background-size: cover;
-    opacity: .7;
+    opacity: .3;
 }
 .foto_itenerary{
     background-repeat: no-repeat;
     height: 50vh;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
+    border-radius: 0px 0px 0px 20px;
     color: white;
-    font-size: 5vh;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 0px !important;
   }
-.foto_itenerary p {
+.texto_itenerary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
     background-color: rgba($color: #000000, $alpha: .8);
-    padding: 6vh;
+    font-size: 3vw;
+    font-weight: 700;
+    border-radius: 20px 20px 0px 0px;
+    padding: 2.5vh;
     margin-bottom: 0px !important;
     width: 100%;
     text-align: center;
 }
-
-
-
+.flag{
+    height: 7vh;
+    width: auto;
+    margin-left: 1vw ;
+}
+.street-view{
+    width:100%;
+    height: 50vh;
+    border-radius: 0px 0px 20px 0px;
+}
 .row{
     width: 100%!important;
 }

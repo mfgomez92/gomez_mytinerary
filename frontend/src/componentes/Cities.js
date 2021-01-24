@@ -12,9 +12,9 @@ const Cities =(props)=>{
                                 <p>Sorry, we couldn't find "{props.notResults}"</p>
                             </div>
                                                 :
-                            props.cities.map((city)=>(
-                                <Link to={`/cities/${city.cityCode}`} className="text-decoration-none col-5 m-3">
-                                    <div key={city.cityCode} className=" foto_carrusel" style={{backgroundImage: `url(${city.imgCity})`}}>
+                            props.cities.map((city, index)=>(
+                                <Link to={`/cities/${city.cityCode}`} key={index}  className="text-decoration-none col-5 m-3">
+                                    <div className=" foto_carrusel" style={{backgroundImage: `url(${city.imgCity})`}}>
                                             <p>{city.cityName}</p>
                                     </div>
                                 </Link>))}

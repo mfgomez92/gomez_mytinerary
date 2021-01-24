@@ -3,6 +3,8 @@ import {Button} from 'react-bootstrap'
 import {Link} from "react-router-dom"
 import Header from './Header'
 import SectionCities from './SectionCities'
+import Footer from './Footer'
+
 
 import Cities from './Cities'
 
@@ -31,6 +33,7 @@ const CitiesPage = () =>{
                     </Button>
                 </Link>
             </div>
+            <Footer/>
         </>
     )
 }

@@ -13,7 +13,7 @@ const SectionCities =(props)=> {
             <section className="sectionC">
                 <div className="sectionCities">
                     <p>Cities</p>
-                    <input type="text" placeholder="Enjoy the experiences, find excursions and tours" onChange={filtrado} autoFocus="autofocus"></input>
+                    <input type="text" placeholder="Enjoy the experiences, find excursions and tours" onChange={filtrado} ></input>
                 </div>
             </section>
         </>
