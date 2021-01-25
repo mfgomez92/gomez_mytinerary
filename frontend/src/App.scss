@@ -321,6 +321,9 @@ body {
     height: fit-content;
     align-self: center;
     opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 .sectionHome p {
     font-size: 3vw;
@@ -329,6 +332,9 @@ body {
     font-size: 2vw;
     padding: 5px 15px;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 20px;
 }
 .btn-my:hover{
     background-color: rgb(237,22,80);

@@ -1,4 +1,4 @@
-const SectionItinerary =({cityItinerary})=> { 
+const SectionItineraries =({cityItinerary})=> { 
     const { cityName,countryName,flag,imgCity,streetView,titleSV}= cityItinerary
     const algo="/assets/not-itinerary.jpg"
 
@@ -31,4 +31,4 @@ const SectionItinerary =({cityItinerary})=> {
     )      
 }
 
-export default SectionItinerary
+export default SectionItineraries

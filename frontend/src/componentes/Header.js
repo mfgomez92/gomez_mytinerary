@@ -17,7 +17,7 @@ const Header=()=>{
     return(
         <>
             <nav className="nav" >
-                <div className="container">
+                <div className="container-fluid">
                     <div className="logo">
                         <NavLink to="/" className="navbar-brand">
                             <img  alt="logo" src="/assets/Mytinerary-logo.png"/>

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import {Link} from "react-router-dom"
 import {Button} from 'react-bootstrap'
+import {BiHome, BiWorld} from 'react-icons/bi'
+
 import Header from './Header'
-import SectionItinerary from './SectionItinerary'
+import SectionItineraries from './SectionItineraries'
 import Footer from './Footer'
 
 
@@ -21,16 +23,16 @@ const ItineraryPage =(props)=>{
     return(
         <>
         <Header/>
-        <SectionItinerary cityItinerary={cityItinerary}/>
-        <div className="container text-center mt-5">
-            <Link to="/" className="m-3" >
+        <SectionItineraries cityItinerary={cityItinerary}/>
+        <div className="container text-center my-5 d-flex justify-content-center">
+            <Link to="/" className="text-decoration-none">
                 <Button variant="secondary" className="btn-my" >
-                back to Home
+                Back to Home <BiHome/>
                 </Button>
             </Link>
-            <Link to="/cities">
+            <Link to="/cities" className="text-decoration-none">
                 <Button variant="secondary" className="btn-my" >
-                back to Cities
+                Back to Cities <BiWorld/>
                 </Button>
             </Link>
         </div>
