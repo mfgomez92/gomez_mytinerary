@@ -17,6 +17,7 @@ const ItineraryPage =(props)=>{
         fetch('http://localhost:4000/cities/'+city)
         .then(response => response.json())
         .then(data => setCityItenerary(data.response))
+        .catch(error => console.log({success: false, error: error}))
     },[city])
 
   

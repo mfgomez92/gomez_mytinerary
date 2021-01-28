@@ -1,27 +1,33 @@
+import { connect } from 'react-redux'
+import {useEffect} from 'react'
+import citiesActions from "../redux/actions/citiesActions";
+
 const SectionCities =(props)=> { 
-    const filtrado = e =>{
-        var valor= e.target.value
-        var ciudadesFiltradas= props.cities.filter(({cityName})=>{
-            return cityName.toUpperCase().indexOf(valor.toUpperCase().trim()) === 0})
-            props.setCitiesFiltradas(ciudadesFiltradas)
-            ciudadesFiltradas.length===0&& props.setNotResults(valor)
-    }  
+    
+    useEffect(() => {
+        props.getCities()
+    }, [])
 
-
-    return  (
+    return  ( 
         <>
             <section className="sectionC">
                 <div className="sectionCities">
                     <p>Cities</p>
-                    <input type="text" placeholder="Enjoy the experiences, find excursions and tours" onChange={filtrado} ></input>
+                    <input type="text" placeholder="Enjoy the experiences, find excursions and tours" onChange={(e)=>props.filtrarCities(e.target.value)} ></input>
                 </div>
             </section>
         </>
-
-    )
-               
-         
-            
+    )           
 }
 
-export default SectionCities
+const mapStateToProps = state => {
+    return {
+        cities: state.citiesReducer.cities
+    }
+}
+const mapDispatchToProps = {
+    getCities: citiesActions.getCities,
+    filtrarCities: citiesActions.filtrarCities
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SectionCities)

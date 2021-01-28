@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import {Button} from 'react-bootstrap'
 import {Link} from "react-router-dom"
 import {BiHome} from 'react-icons/bi'
@@ -6,28 +5,14 @@ import {BiHome} from 'react-icons/bi'
 import Header from './Header'
 import SectionCities from './SectionCities'
 import Footer from './Footer'
-
-
 import Cities from './Cities'
 
 const CitiesPage = () =>{
-    
-    var [cities, setCities] = useState([])
-    var [citiesFiltradas, setCitiesFiltradas] = useState([""])
-    var [notResults, setNotResults]= useState("")
-    
-    useEffect(()=>{
-        fetch('http://localhost:4000/cities')
-        .then(response => response.json())
-        .then(data => [setCities(data.response),setCitiesFiltradas(data.response)])
-    },[])
-
     return(
         <>
             <Header/>
-            <SectionCities setCitiesFiltradas={setCitiesFiltradas} cities={cities} notResults={notResults}
-            setNotResults={setNotResults}/>
-            <Cities cities={citiesFiltradas} notResults={notResults}/>
+            <SectionCities/>
+            <Cities/>
             <div className="container text-center mt-5">
                 <Link to="/" className="text-decoration-none">
                     <Button variant="secondary" className="btn-my m-auto" >

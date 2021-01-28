@@ -5,15 +5,7 @@ const cityController ={
     //se puede usar el async await, pero en este caso es mejor el then para despus poder capturar el error
     newCity:(req,res)=>{
         const {cityCode,cityName,countryName,imgCity,titleSV,streetView,flag}= req.body
-        const cityNew= new City( {
-            cityCode:cityCode,
-            cityName:cityName,
-            countryName:countryName,
-            imgCity:imgCity,
-            titleSV:titleSV,
-            streetView:streetView,
-            flag:flag
-        })
+        const cityNew= new City( {cityCode, cityName, countryName, imgCity, titleSV, streetView, flag})
          cityNew.save()
          .then(cityNew=> {
              return res.json({success: true , response: cityNew})
@@ -21,7 +13,6 @@ const cityController ={
          .catch(error => {
              return res.json({success: false, error: error})
          } )
-       
     },
 
     allCities:(req, res)=>{
