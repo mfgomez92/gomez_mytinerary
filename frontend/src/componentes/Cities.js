@@ -13,10 +13,10 @@ const Cities =(props)=>{
                                 <p>Sorry, we couldn't find "{props.notResults}"</p>
                             </div>
                                                 :
-                            props.citiesFiltradas.map((city, index)=>(
-                                <Link to={`/cities/${city.cityCode}`} key={index}  className="text-decoration-none col-5 m-3">
-                                    <div className=" foto_carrusel" style={{backgroundImage: `url(${city.imgCity})`}}>
-                                            <p>{city.cityName}</p>
+                            props.citiesFiltradas.map(({_id, imgCity, cityName}, index)=>(
+                                <Link to={`/cities/${_id}`} key={index}  className="text-decoration-none col-5 m-3">
+                                    <div className=" foto_carrusel" style={{backgroundImage: `url(${imgCity})`}}>
+                                            <p>{cityName}</p>
                                     </div>
                                 </Link>))}
                     </div> 

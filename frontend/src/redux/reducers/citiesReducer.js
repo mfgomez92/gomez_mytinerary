@@ -1,7 +1,14 @@
 const initialState  = {
     cities: [],
     citiesFiltradas:[],
-    notResults:[""]
+    notResults:[""],
+    city:[{
+    cityName: "",
+    countryName: "",
+    flag: "",
+    imgCity: "",
+    streetView: "",
+    titleSV: ""}]
 } 
 
 export function citiesReducer(state = initialState, action) {
@@ -12,7 +19,16 @@ export function citiesReducer(state = initialState, action) {
                 cities: action.payload,
                 citiesFiltradas: action.payload
             }
-            break
+        case 'LOAD_CITY':
+            return{
+                ...state,
+                city:  state.cities.filter(({_id})=>{
+                    return _id.toUpperCase().indexOf(action.payload.toUpperCase().trim()) === 0}),
+                
+            }
+        case 'NEW_CITY':
+                action.payload ? alert("Se grabó correctamente") : alert("Hubo un error")
+                return state
         case 'FILTRAR_CITIES':
             return {
                 ...state,
@@ -20,7 +36,6 @@ export function citiesReducer(state = initialState, action) {
                     return cityName.toUpperCase().indexOf(action.payload.toUpperCase().trim()) === 0}),
                 notResults: action.payload
             }  
-            break
         default:
             return state
     }

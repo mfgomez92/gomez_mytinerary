@@ -7,6 +7,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminPage from './componentes/AdminPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/cities" component={CitiesPage} />
           <Route path="/cities/:city" component={ItineraryPage} />
+          <Route path="/admin" component={AdminPage}/>
         </Switch>
       </ScrollToTop>  
     </Router>

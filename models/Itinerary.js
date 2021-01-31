@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
 const itinerarySchema= new mongoose.Schema({
+    //contacto del usuario opcional para renderizar un link a su pagina
+    itineraryContact:String,
     itineraryCreator:{type:Number, required:true},
     itineraryName:{type:String, required:true},
     itineraryDuration:{type:Number, required:true},
