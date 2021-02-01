@@ -386,8 +386,8 @@ body {
     width: 90%;
     border: none;
     text-align: center;
-    padding: 10px;
-    font-size: 2vw;
+    padding: 8px;
+    font-size: 1.9vw;
     font-weight: 700;
     border-radius: 15px;
     box-shadow: 2px 2px 5px rgba(237, 22, 79, 0.80);
@@ -406,7 +406,7 @@ body {
     display: flex;
     justify-content: center;
     align-items:flex-end;
-    padding: 12% 10% 3% 10%;   
+    padding: 12% 5% 3% 5%;   
 }
 .sectionI::before{
     content: "";
@@ -424,6 +424,7 @@ body {
 .foto_itenerary{
     background-repeat: no-repeat;
     height: 50vh;
+    width: 90vw;
     background-size: cover;
     background-position: center;
     border-radius: 0px 0px 0px 20px;
@@ -457,6 +458,34 @@ body {
     height: 50vh;
     border-radius: 0px 0px 20px 0px;
 }
+//Section Itinerary-Activities
+.fondo_actividad{
+    background-repeat: no-repeat;
+    height: 30vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+.MuiRating-root{
+    color: green !important;
+}
+
+.btn-mz{
+    font-size: 1.5vw;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+.btn-mz:hover{
+    background-color: rgb(237,22,80);
+    transform: scale(1.01);
+    transform: translateY(2px);
+    box-shadow: 2px 2px 5px rgb(237,22,80);
+
+}
+
 .row{
     width: 100%!important;
 }

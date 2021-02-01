@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux'
 import citiesActions from "../redux/actions/citiesActions";
+import NotItineraries from "./NotItineraries"
+import Itineraries from "./Itineraries";
+
 
 
 const SectionItineraries =(props)=> { 
     const {cityName,countryName,flag,imgCity,streetView,titleSV} =props.city
-    const notItinerary="/assets/not-itinerary.jpg"
+    const valor = props.activities.length
      useEffect(()=>{
-         props.getCity(props.id)
-         props.getItineraries(props.id)
-     },[])
-  
-    console.log(props)
+         fetchear_data()
+     },[props.id])
+     async function fetchear_data() {
+        await props.getItineraries(props.id)
+        await props.getCity(props.id)   
+     }    
     return  (
         <>
             <section className="sectionI"> 
@@ -30,13 +34,7 @@ const SectionItineraries =(props)=> {
                     </div>
                 </div>
             </section>
-            <div className="container-fluid d-flex flex-wrap">               
-                    <div className="row justify-content-center pt-3 mx-auto">
-                        <div key={notItinerary} className="col-5  foto_not_found m-3" style={{backgroundImage: `url(${notItinerary})`}}>
-                            <p>New itineraries Coming Soon</p>
-                        </div>
-                    </div>
-            </div>
+            {valor===0 ? <NotItineraries/>:<Itineraries/>}
         </>
     )      
 }

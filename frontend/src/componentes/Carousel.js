@@ -1,5 +1,4 @@
 import {Carousel, Container, Row} from 'react-bootstrap'
-
 import CarouselFoto from './CarouselFoto'
 
 const CarouselHome = ({elCarrusel}) =>{

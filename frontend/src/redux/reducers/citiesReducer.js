@@ -9,8 +9,8 @@ const initialState  = {
     imgCity: "",
     streetView: "",
     titleSV: ""}],
-    activities:"",
-    itineraries:""
+    activities:[],
+    itineraries:[]
 
 } 
 
@@ -26,7 +26,7 @@ export function citiesReducer(state = initialState, action) {
             return{
                 ...state,
                 city: action.payload.response,
-                activities: action.payload.activities
+                activities: action.payload.activities===null? []: action.payload.activities
             }
         case 'LOAD_ITINERARIES':
             return{
