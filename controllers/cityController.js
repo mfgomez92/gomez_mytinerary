@@ -1,4 +1,5 @@
 const City =require('../models/City')
+const Activity = require('../models/Activity')
 
 const cityController ={
     //se puede usar el async await, pero en este caso es mejor el then para despus poder capturar el error
@@ -25,14 +26,23 @@ const cityController ={
         })
     },
 
-    singleCity:(req, res)=>{
-        //Devuelve una sola ciudad
-        const cityCode = req.params.cityCode
-        City.findOne({cityCode:cityCode})
-        .then(resultado => res.json({success:true, response: resultado}))
-        .catch(error=> res.json({success:false, error:error}))
-    }
+    singleCity:async (req, res)=>{
+        
+        const id = req.params.id
+        const activities = await Activity.find({idCity: id})
+        
+        if (activities.length === 0 ) {
+            City.findOne({_id:id})
+            .then(resultado => res.json({success:true, response: resultado, activities:null}))
+            .catch(error=> res.json({success:false, error:error}))
+        } else {
+            City.findOne({_id:id})
+            .then(resultado => res.json({success:true, response: resultado,activities:activities}))
+            .catch(error=> res.json({success:false, error:error}))
+        } 
+     }
 }
+
 module.exports= cityController
 
 

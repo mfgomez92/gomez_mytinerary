@@ -19,6 +19,7 @@ const AdminPage =(props)=>{
         flag:""
     })
     const readInput = (e) => {
+        console.log(e.target)
         const property = e.target.name
         const value = e.target.value
         setNuevaCiudad({
@@ -91,25 +92,29 @@ const AdminPage =(props)=>{
                                 })}
                             </select>
                             <input type="text" autocomplete="nope" className="admin_input "
-                            name="cityCode" placeholder="Enter the city code" required/>
+                            name="activityAuthorName" placeholder="Author" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="cityName" placeholder="Enter city name" required/>
+                            name="activityAuthorPic" placeholder="Pic Author" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="countryName" placeholder="Enter the name of the Country" required/>
+                            name="activityContact" placeholder="Enter your Contact Page" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="imgCity" placeholder="Enter the url of the image" required/>
+                            name="activityName" placeholder="Enter the name of the Activity" required/>
 
                             <input type="text" autocomplete="nope"className="admin_input"
-                            name="flag" placeholder="Enter the url of the flag" required/>
+                            name="activityPic" placeholder="Enter the url of the activity image" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="titleSV" placeholder="Enter Street View title" required/>
+                            name="activityDescription" placeholder="Enter the description of the activity" required/>
 
-                            <input type="text" autocomplete="nope" className="admin_input"
-                            name="streetView" placeholder="Enter the Street View Url" required/>
+                            <input type="number" autocomplete="nope" className="admin_input"
+                            name="activityDuration" placeholder="Enter the duration of the activity" required/>
+
+                            <input type="number" autocomplete="nope" className="admin_input"
+                            name="activityPrice" placeholder="Enter the price of the activity" required/>
+
                             <div className="m-3 container d-flex justify-content-around">
                                 <Button variant="primary" className="btn-mx">Validate</Button>
                                 <Button variant="primary" className="btn-mx">View All Activities</Button>

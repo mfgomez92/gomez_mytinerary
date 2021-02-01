@@ -8,7 +8,10 @@ const initialState  = {
     flag: "",
     imgCity: "",
     streetView: "",
-    titleSV: ""}]
+    titleSV: ""}],
+    activities:"",
+    itineraries:""
+
 } 
 
 export function citiesReducer(state = initialState, action) {
@@ -22,9 +25,13 @@ export function citiesReducer(state = initialState, action) {
         case 'LOAD_CITY':
             return{
                 ...state,
-                city:  state.cities.filter(({_id})=>{
-                    return _id.toUpperCase().indexOf(action.payload.toUpperCase().trim()) === 0}),
-                
+                city: action.payload.response,
+                activities: action.payload.activities
+            }
+        case 'LOAD_ITINERARIES':
+            return{
+                ...state,
+                itineraries: action.payload.response
             }
         case 'NEW_CITY':
                 action.payload ? alert("Se grabó correctamente") : alert("Hubo un error")

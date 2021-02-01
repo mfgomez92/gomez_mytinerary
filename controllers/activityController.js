@@ -22,6 +22,12 @@ const ActivityController ={
             res.json({success: true, respuesta: activityPopulate})
         })
         .catch(error => res.json({success: false, error}))
-    }
+    },
+    activityId: (req, res) => {
+        const {id} = req.params
+        Activity.findById(id).populate('idCity')
+        .then(activity => res.json({success: true, respuesta: activity}))
+        .catch(error => res.json({success: false, error}))
+    },
 }
 module.exports= ActivityController

@@ -4,13 +4,14 @@ import citiesActions from "../redux/actions/citiesActions";
 
 
 const SectionItineraries =(props)=> { 
-    
-    const {cityName,countryName,flag,imgCity,streetView,titleSV} =props.city[0]
+    const {cityName,countryName,flag,imgCity,streetView,titleSV} =props.city
     const notItinerary="/assets/not-itinerary.jpg"
-    useEffect(()=>{
-        props.getCity(props.id)
-    },[])
-    console.log(props.city[0])
+     useEffect(()=>{
+         props.getCity(props.id)
+         props.getItineraries(props.id)
+     },[])
+  
+    console.log(props)
     return  (
         <>
             <section className="sectionI"> 
@@ -36,18 +37,19 @@ const SectionItineraries =(props)=> {
                         </div>
                     </div>
             </div>
-        {/* {aca se tienen q renderizar cada ciudad poputlate con sus actividades, para eso tengo q modificar en el controlador cityController.singleCity, me tiene la ciudad con sus actividades e itinerarios} */}
         </>
     )      
 }
 const mapStateToProps = state => {
     return {
-        cities: state.citiesReducer.cities,
-        city:state.citiesReducer.city
+        city:state.citiesReducer.city,
+        activities:state.citiesReducer.activities,
+        itineraries: state.citiesReducer.itineraries
     }
 }
 const mapDispatchToProps = {
     getCity: citiesActions.getCity,
+    getItineraries: citiesActions.getItineraries
 }
 export default connect(mapStateToProps,mapDispatchToProps)(SectionItineraries)
 

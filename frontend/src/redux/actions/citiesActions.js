@@ -11,7 +11,18 @@ const citiesActions = {
     },
     getCity: (id) => {
         return async (dispatch, getState) => {
-            dispatch({type: 'LOAD_CITY', payload: id})
+            const respuesta  = await fetch('http://localhost:4000/cities/'+id)
+            const data = await respuesta.json()
+            //catchear el error
+            dispatch({type: 'LOAD_CITY', payload: data})
+        }
+    },
+    getItineraries:(id)=>{
+        return async (dispatch, getState) => {
+            const respuesta  = await fetch('http://localhost:4000/itineraries/'+id)
+            const data = await respuesta.json()
+            //catchear el error
+            dispatch({type: 'LOAD_ITINERARIES', payload: data})
         }
     },
     newCity: newCity => {
