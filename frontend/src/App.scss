@@ -17,7 +17,7 @@ body {
     //line-height: 65px;
     text-align: center;
     z-index: 10;
-    background-color: rgba(237, 22, 79, 0.7);
+    background-color: rgba(237, 22, 79, 0.3);
 }
 .nav-login{
     width: 100%;
@@ -554,11 +554,10 @@ body {
 .admin_input{
     padding-left: 15px;
     width: 70%;
-    height: 5vh;
     font-size: 20px;
     margin: 0.5vh;
     border: none;
-    box-shadow: 2px 2px 5px rgba(27, 0, 136, 0.808);
+    box-shadow: 1px 1px 3px rgba(27, 0, 136, 0.808);
   }
 .admin_input:focus{
     outline:none !important;
@@ -566,8 +565,9 @@ body {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-    box-shadow: 5px 5px 9px rgba(237, 22, 79, 0.80);
+    box-shadow: 1px 1px 3px rgba(237, 22, 79, 0.80);
 }
+
 .btn-mx{
     font-size: 1.5vw;
     padding: 5px 15px;
@@ -582,35 +582,64 @@ body {
     box-shadow: 2px 2px 5px rgb(27, 0, 136);
 
 }
-.input-file{
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 80%;
-    border-style: #f0f2f7;
-    background: white;
-}
-.input-file[type=file]{
-    cursor: pointer;
-    display: block;
-    font-size: 999px;
-    filter: alpha(opacity=0);
-    min-width: 50%;
-    min-height: 100%;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-    
 
-}
 
 //login
 .separator-line {
-    width: auto;
+    width: 100%;
     text-align: center;
     margin: 20px auto 20px;
     font-size: 14px;
+}
+.separator-line span {
+    background: rgb(253,232,238);
+    padding: 0 15px;
+}
+.separator-line .line {
+    width: 70%;
+    border-top: 1px solid #ccc;
+    margin-top: -9px;
+    display: block;
+    padding: 0;
+    text-align: center;
+    
+}
+.login_input{
+    padding-left: 15px;
+    width: 70%;
+    height: 7vh;
+    margin: 0.5vh;
+    border: none;
+  }
+.login_input:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: 5px 5px 9px rgba(237, 22, 79, 0.80);
+}
+.login_input span{
+    font-size: 20px;
+    color: rgb(26, 23, 23);
+}
+
+.input-file[type=file]{
+    display: none;
+}
+.profile-pic-register{
+    width: 70%;
+    margin-bottom: 2vh;
+}
+.label_input_file{
+    width: 70%;
+    margin: 0.5vh;
+    border: none;
+}
+.label_input_file div p{
+    font-size: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(27, 0, 136, 0.808);
+    width: 100%;
+
 }

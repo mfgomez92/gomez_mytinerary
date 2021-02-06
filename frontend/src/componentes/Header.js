@@ -8,11 +8,12 @@ const Header=()=>{
         document.querySelector('#menu_hamburguesa').classList.toggle('active') 
         document.querySelector('#mainListDiv').classList.toggle('show_list') 
     } 
-    window.onscroll = ()=> {
-        window.scrollY > 100? 
-            document.querySelector('.nav').classList.add('affix'):
-            document.querySelector('.nav').classList.remove('affix')
-      };
+    //Arreglar
+    // window.onscroll = ()=> {
+    //     window.scrollY > 100? 
+    //         document.querySelector('.nav').classList.add('affix'):
+    //         document.querySelector('.nav').classList.remove('affix')
+    //   };
 
     
     return(
