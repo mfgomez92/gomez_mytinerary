@@ -14,6 +14,7 @@ const Header=()=>{
             document.querySelector('.nav').classList.remove('affix')
       };
 
+    
     return(
         <>
             <nav className="nav" >
@@ -44,7 +45,7 @@ const Header=()=>{
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/" className="nav-link">
+                                <NavLink to="/login"  className="nav-link">
                                     <IconContext.Provider value={{size:'1.25em'}}>
                                         <div className="d-flex align-items-center">
                                             <BiUserCircle/><div>Login</div>
@@ -60,7 +61,9 @@ const Header=()=>{
                         <i></i>
                     </span>
                 </div>
-            </nav>    
+            </nav>
+
+
         </>
     )
 

@@ -19,6 +19,13 @@ body {
     z-index: 10;
     background-color: rgba(237, 22, 79, 0.7);
 }
+.nav-login{
+    width: 100%;
+    //line-height: 65px;
+    text-align: center;
+    z-index: 10;
+    background-color: rgb(237, 22, 79);
+}
 .nav div.logo {
     float: left;
     width: auto;
@@ -574,4 +581,36 @@ body {
     transform: translateY(1px);
     box-shadow: 2px 2px 5px rgb(27, 0, 136);
 
+}
+.input-file{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 80%;
+    border-style: #f0f2f7;
+    background: white;
+}
+.input-file[type=file]{
+    cursor: pointer;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-width: 50%;
+    min-height: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    
+
+}
+
+//login
+.separator-line {
+    width: auto;
+    text-align: center;
+    margin: 20px auto 20px;
+    font-size: 14px;
 }

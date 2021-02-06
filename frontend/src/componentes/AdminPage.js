@@ -9,29 +9,47 @@ const AdminPage =(props)=>{
         props.getCities()
     }, [])
 
-    const [nuevaCiudad, setNuevaCiudad] = useState({
+    const [newCity, setNewCity] = useState({
         cityCode:"",
         cityName:"",
         countryName:"",
-        imgCity:"",
+        file:"",
         titleSV:"",
         streetView:"",
         flag:""
     })
-    const readInput = (e) => {
-        console.log(e.target)
-        const property = e.target.name
-        const value = e.target.value
-        setNuevaCiudad({
-            ...nuevaCiudad,
-            [property]: value
-        })
-    }
-    const enviarInfo = e => {
-        e.preventDefault()
-        props.newCity(nuevaCiudad)
-    }
+    const [file, setFile] = useState()
 
+    const [pathImage, setPathImage]= useState('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Icons8_flat_add_image.svg/512px-Icons8_flat_add_image.svg.png')
+    //capturador de los valores de los inputs
+    const handleChange = (e) => {
+          const { name, value } = e.target
+          setNewCity({ ...newCity,[name]: value })
+        }
+    //funcion para enviar a la base de datos 
+    const  sendImage= e =>{
+        e.preventDefault()
+        props.newCity(newCity, file).then((result)=>
+        console.log("el resultado es: " , result))
+    }
+    //Funcion para previsualizar imagenes
+    const onFileChange= e =>{
+        if(e.target.files && e.target.files.length > 0){
+            const file = e.target.files[0]
+            if(file.type.includes('image')){
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+
+                reader.onload= function load(){
+                    setPathImage(reader.result)
+                }
+                setFile(file)
+            }else{
+                console.log('tuvimos un error')
+            }
+        }
+    }
+    //controlador del modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -50,30 +68,41 @@ const AdminPage =(props)=>{
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+                        <form className="text-center" encType="multipart/form-data">
                             <input type="text" autocomplete="off" className="admin_input "
-                            name="cityCode" onChange={(e)=>readInput(e)} placeholder="Enter the city code" required/>
+                            name="cityCode" onChange={(e)=>handleChange(e)} placeholder="Enter the city code" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="cityName" onChange={(e)=>readInput(e)} placeholder="Enter city name" required/>
+                            name="cityName" onChange={(e)=>handleChange(e)} placeholder="Enter city name" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="countryName" onChange={(e)=>readInput(e)} placeholder="Enter the name of the Country" required/>
+                            name="countryName" onChange={(e)=>handleChange(e)} placeholder="Enter the name of the Country" required/>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-4 mx-auto">
+                                        <input type="file" className="admin_input input-file"
+                                        name="file" onChange={onFileChange} required/>
+                                        <img className="img-fluid img-thumbnail image" src={pathImage} alt="image"/>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <input type="text" autocomplete="nope" className="admin_input"
-                            name="imgCity" onChange={(e)=>readInput(e)} placeholder="Enter the url of the Image" required/>
+
 
                             <input type="text" autocomplete="nope"className="admin_input"
-                            name="flag" onChange={(e)=>readInput(e)} placeholder="Enter the url of the flag" required/>
+                            name="flag" onChange={(e)=>handleChange(e)} placeholder="Enter the url of the flag" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="titleSV" onChange={(e)=>readInput(e)} placeholder="Enter Street View title" required/>
+                            name="titleSV" onChange={(e)=>handleChange(e)} placeholder="Enter Street View title" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
-                            name="streetView" onChange={(e)=>readInput(e)} placeholder="Enter the Street View Url" required/>
+                            name="streetView" onChange={(e)=>handleChange(e)} placeholder="Enter the Street View Url" required/>
+
                             <div className="m-3 container d-flex justify-content-around">
-                                <Button variant="primary" className="btn-mx" onClick={enviarInfo}>Validate</Button>
+                                <Button variant="primary" className="btn-mx" type="submit" onClick={sendImage}>Validate</Button>
                                 <Button variant="primary" className="btn-mx" onClick={handleShow}>View All Cities</Button>
                             </div>
+                        </form>
                         </Card.Body>
                         </Accordion.Collapse>
                     </Card>
@@ -85,12 +114,14 @@ const AdminPage =(props)=>{
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+
                             <select name="autorId" id=""  className="admin_input ">
                                 <option value="" selected>Select a City</option>
                                 {props.cities && props.cities.map(city => {
                                     return <option value={city._id}>{city.cityName}</option>
                                 })}
                             </select>
+                            
                             <input type="text" autocomplete="nope" className="admin_input "
                             name="activityAuthorName" placeholder="Author" required/>
 
@@ -103,8 +134,8 @@ const AdminPage =(props)=>{
                             <input type="text" autocomplete="nope" className="admin_input"
                             name="activityName" placeholder="Enter the name of the Activity" required/>
 
-                            <input type="text" autocomplete="nope"className="admin_input"
-                            name="activityPic" placeholder="Enter the url of the activity image" required/>
+                            <input type="file" autocomplete="nope"
+                            name="activityPic" placeholder="Enter of the activity image" required/>
 
                             <input type="text" autocomplete="nope" className="admin_input"
                             name="activityDescription" placeholder="Enter the description of the activity" required/>

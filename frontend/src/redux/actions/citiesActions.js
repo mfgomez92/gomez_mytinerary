@@ -25,14 +25,18 @@ const citiesActions = {
             dispatch({type: 'LOAD_ITINERARIES', payload: data})
         }
     },
-    newCity: newCity => {
+    newCity: (newCity, file) => {
         return async (dispatch, getState) => {
         if (newCity.cityCode === '' || newCity.cityName === '' || newCity.countryName === ''
-        || newCity.imgCity === ''|| newCity.titleSV === ''|| newCity.streetView === ''|| newCity.flag === '') {
+        || newCity.titleSV === ''|| newCity.streetView === ''|| newCity.flag === '') {
             alert("Fill in all fields")
             
         }else{
-            const respuesta = await axios.post('http://localhost:4000/cities', newCity)
+            const form = new FormData()
+            form.append('newCity',newCity)
+            form.append('file', file)
+            const respuesta = await axios.post('http://localhost:4000/cities', form, {headers:{'Content-Type':'multipart/formdata'}})
+            console.log(respuesta)
             dispatch({type: 'NEW_CITY', payload: respuesta.data.success})
         }}
     },

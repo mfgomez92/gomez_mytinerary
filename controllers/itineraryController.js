@@ -1,6 +1,5 @@
 const Itinerary =require('../models/itinerary')
  
-
 const itineraryController ={
     newItinerary:(req,res)=>{
         const {idCity,itineraryAuthorName,itineraryAuthorPic,itineraryAuthorContact,

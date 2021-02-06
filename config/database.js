@@ -1,6 +1,6 @@
-const mongoose= require ('mongoose')
+const mongoose = require ('mongoose')
 
-mongoose.connect('mongodb+srv://matiasgomez:34921901mfg@cluster0.torgr.mongodb.net/mytinerary?retryWrites=true&w=majority',{
+mongoose.connect(process.env.MONGODB_URI,{
     useNewUrlParser:true,
     useCreateIndex:true,
     useUnifiedTopology:true,
@@ -8,3 +8,4 @@ mongoose.connect('mongodb+srv://matiasgomez:34921901mfg@cluster0.torgr.mongodb.n
 })
 .then(()=> console.log("database connected"))
 .catch(error=> console.log(error))
+
