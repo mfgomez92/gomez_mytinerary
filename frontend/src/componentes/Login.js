@@ -1,10 +1,29 @@
 import GoogleLogin from 'react-google-login';
 import {Button} from 'react-bootstrap'
+import { connect } from 'react-redux'
+import authActions from "../redux/actions/authActions"
+import {useState} from 'react'
 
-const Login=()=>{
+
+const Login=(props)=>{
     const responseGoogle = (response) => {
-        console.log(response);
+        props.loginWithGoogle(response.profileObj);
       }
+    //Usuario a loguearse
+    var [loginUser, setLoginUser] = useState({
+        username:"",
+        password:"",
+    })
+    //capturo valores de los inputs
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setLoginUser({ ...loginUser,[name]: value })
+      }
+    //Funcion para confirmar el login
+    const  sendUser= e =>{
+        e.preventDefault()
+        props.loginUser(loginUser)
+    }
     return(
         <>
             <h1>Login</h1>
@@ -20,9 +39,11 @@ const Login=()=>{
                 <span>Or</span> 
                 <span className="line mx-auto"></span> 
             </div>
-            <input type="text" autocomplete="nope" placeholder="Your email address" className="admin_input" />
-            <input type="password" placeholder="Password for Mytinerary" className="admin_input" />
-            <Button variant="secondary" className="admin_input mx-auto mt-4" >
+            <input type="text" autocomplete="nope" placeholder="Your email address" className="admin_input" name="username"
+            onChange={(e)=>handleChange(e)}/>
+            <input type="password" placeholder="Password for Mytinerary" className="admin_input" name="password"
+            onChange={(e)=>handleChange(e)} />
+            <Button variant="secondary" className="admin_input mx-auto mt-4" type="submit" onClick={sendUser} >
                 Login
             </Button>
             <p>* By entering with Google you are agreeing to receive offers by email</p>
@@ -33,4 +54,15 @@ const Login=()=>{
         </>
     )
 }
-export default Login
+const mapStateToProps = state => {
+    return {
+        loggedUser: state.authReducer.loggedUser
+    }
+}
+
+
+const mapDispatchToProps = {
+    loginWithGoogle: authActions.loginWithGoogle,
+    loginUser: authActions.loginUser,
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login) 

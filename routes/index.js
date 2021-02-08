@@ -5,9 +5,8 @@ const cityController= require('../controllers/cityController')
 const activityController= require('../controllers/activityController')
 const itineraryController=require('../controllers/itineraryController')
 const userController = require('../controllers/userController')
-const validator = require('../controllers/validator')
 //middleware
-
+const validator = require('../controllers/validator')
 const passport = require('passport')
 require('../config/passport')
 
@@ -26,9 +25,11 @@ router.route('/itineraries')
 
 router.route('/itineraries/:id')
 .get(itineraryController.itinerariesForCity)
-
+//Sign Up Sign with Google Sign In 
 router.route('/user/signup')
 .post(validator.validNewAccount, userController.signUp)
+router.route('/user/sign_google')
+.post(userController.signGoogle)
 
 router.route('/user/signin')
 .post(userController.signIn)

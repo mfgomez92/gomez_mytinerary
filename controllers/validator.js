@@ -17,7 +17,7 @@ const validator = {
         if (!validation.error) {
             next()
         } else {
-            res.json({success: false, errores: ['There was an error in the data, please check.']})
+            res.json({success: false, errores: ['There was an error in the data, please check.', console.log(validation.error)]})
         }
     },
 

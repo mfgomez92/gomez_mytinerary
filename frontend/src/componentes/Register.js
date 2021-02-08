@@ -7,20 +7,25 @@ import {useEffect, useState} from 'react'
 
 const Register =(props)=>{
     const responseGoogle = (response) => {
-        console.log(response);
+        props.loginWithGoogle(response.profileObj);
       }
     useEffect(() => {
         props.getCountries()
     }, [])
-    const [newCity, setNewCity] = useState({
-        cityCode:"",
-        cityName:"",
-        countryName:"",
-        file:"",
-        titleSV:"",
-        streetView:"",
-        flag:""
+    //Usuario a cargar en la db
+    var [newUser, setNewUser] = useState({
+        name:"",
+        lastName:"",
+        username:"",
+        password:"",
+        country:""
     })
+    //capturador de los valores de los inputs 
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setNewUser({ ...newUser,[name]: value })
+      }
+
     const [pathImage, setPathImage]= useState('/assets/avatar.png')
     const [file, setFile] = useState()
     //Funcion para previsualizar imagenes
@@ -40,7 +45,11 @@ const Register =(props)=>{
             }
         }
     }
-
+    //Funcion para enviar la informacion a la db
+    const  sendUser= e =>{
+            e.preventDefault()
+            props.newUser(newUser, file)
+        }
     return(
         <>
             <h1>Register</h1>
@@ -56,29 +65,34 @@ const Register =(props)=>{
                 <span className="text">Or register with your email</span>
                 <span className="line mx-auto"></span> 
             </div>
-            <input type="text" autocomplete="nope" placeholder="Name" className="admin_input" />
-            <input type="text" autocomplete="nope" placeholder="Last Name" className="admin_input" />
-            <input type="text" autocomplete="nope" placeholder="Your email address" className="admin_input" />
-                        <select name="country" id=""  className="admin_input p-1">
-                    <option value="" className="admin_input" selected>Select your Country</option>
-                    {props.countries && props.countries.map(country => {
-                        return <option className="option-select" value={country.name}>{country.name}</option>
-                    })}
-                </select>
-            <input type="password" placeholder="Password for Mytinerary" className="admin_input" />
+            <input type="text" autocomplete="nope" placeholder="Name" name="name" 
+            onChange={(e)=>handleChange(e)} className="admin_input" required/>
+            <input type="text" autocomplete="nope" placeholder="Last Name" name="lastName"
+            onChange={(e)=>handleChange(e)} className="admin_input" required/>
+            <input type="text" autocomplete="nope" placeholder="Your email address" name="username"
+            onChange={(e)=>handleChange(e)}  className="admin_input" required/>
+            <select name="country" onChange={(e)=>handleChange(e)} className="admin_input p-1">
+                <option value="" className="admin_input" selected>Select your Country</option>
+                {props.countries && props.countries.map(country => {
+                    return <option className="option-select" value={country.name}>{country.name}</option>
+                })}
+            </select>
+            <input type="password" placeholder="Password for Mytinerary" name="password"
+            onChange={(e)=>handleChange(e)} className="admin_input" required/>
             <div className="d-flex justify-content-center">
                 <span  data-toggle="tooltip" data-placement="left" title="At least 6 characters (cannot include spaces or special characters / %)">(?)</span>
                 <p> The password must be at least 6 characters.</p>
             </div>
             <label for="profile-pic" className="label_input_file" >
                 <div className="d-flex flex-column align-items-center">
-                   <p>Select your Profile picture</p> 
+                <p>Select your Profile picture</p> 
                     <img className="img-fluid profile-pic-register" src={pathImage} alt="profile-pic"/>
                 </div>
             </label>
             <input type="file" id="profile-pic" className="admin_input input-file"
             name="file" onChange={onFileChange} required/>
-            <Button variant="secondary" className="admin_input mx-auto" >
+            <Button variant="secondary" className="admin_input mx-auto"
+            type="submit" onClick={sendUser} >
                 Register
             </Button>
             <p>* By entering with Google you are agreeing to receive offers by email</p>
@@ -91,12 +105,15 @@ const Register =(props)=>{
 }
 const mapStateToProps = state => {
     return {
-        countries: state.authReducer.countries
+        countries: state.authReducer.countries,
+        loggedUser: state.authReducer.loggedUser
     }
 }
 
 
 const mapDispatchToProps = {
     getCountries: authActions.getCountries,
+    newUser: authActions.newUser,
+    loginWithGoogle: authActions.loginWithGoogle,
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Register) 

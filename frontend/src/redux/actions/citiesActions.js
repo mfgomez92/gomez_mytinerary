@@ -36,7 +36,6 @@ const citiesActions = {
             form.append('newCity',newCity)
             form.append('file', file)
             const respuesta = await axios.post('http://localhost:4000/cities', form, {headers:{'Content-Type':'multipart/formdata'}})
-            console.log(respuesta)
             dispatch({type: 'NEW_CITY', payload: respuesta.data.success})
         }}
     },

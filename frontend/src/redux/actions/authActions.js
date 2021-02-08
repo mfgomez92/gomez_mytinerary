@@ -1,13 +1,34 @@
 import axios from "axios"
 
 const authActions = {
-    newUser: (nuevoUsuario) => {
+    newUser: (newUser, file) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/user/signup', nuevoUsuario)
-           if (!respuesta.data.success) {
-               return respuesta.data
-           }
+            if (newUser.name === '' || newUser.lastName === '' || newUser.username === ''
+                || newUser.password=== ''|| newUser.country === '') {
+             alert("Fill in all fields")
+            }
+            const form = new FormData()
+            form.append('name',newUser.name)
+            form.append('lastName',newUser.lastName)
+            form.append('username',newUser.username)
+            form.append('password',newUser.password)
+            form.append('country',newUser.country)
+            form.append('profilePicture', file.name)
+            form.append('file', file)
+            const respuesta = await axios.post('http://localhost:4000/user/signup', form, {headers:{'Content-Type':'multipart/formdata'}})
+            if (!respuesta.data.success) {
+                return respuesta.data
+            }
             dispatch({type: 'LOG_USER', payload: respuesta.data})
+        }
+    },
+    loginWithGoogle:(response)=>{
+        return async (dispatch, getState) => {
+            const respuesta = await axios.post('http://localhost:4000/user/sign_google', response)
+            if (!respuesta.data.success) {
+                return respuesta.data
+            }
+            dispatch({type:'LOG_USER', payload: respuesta.data})
         }
     },
     loginUser: (user) => {
