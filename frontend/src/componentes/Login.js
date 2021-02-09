@@ -2,10 +2,13 @@ import GoogleLogin from 'react-google-login';
 import {Button} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import authActions from "../redux/actions/authActions"
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 
 const Login=(props)=>{
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    })
     const responseGoogle = (response) => {
         props.loginWithGoogle(response.profileObj);
       }
@@ -14,16 +17,29 @@ const Login=(props)=>{
         username:"",
         password:"",
     })
+    //Errores
+    const [errores, setErrores] = useState([])
     //capturo valores de los inputs
     const handleChange = (e) => {
         const { name, value } = e.target
         setLoginUser({ ...loginUser,[name]: value })
       }
     //Funcion para confirmar el login
-    const  sendUser= e =>{
-        e.preventDefault()
-        props.loginUser(loginUser)
+    const  sendUser= async e =>{
+        e.preventDefault()       
+        if (loginUser.username === '' || loginUser.password === '') {
+            alert("All fields are required")
+            return false
+        }
+        setErrores([])
+        const respuesta = await props.loginUser(loginUser)
+        if (respuesta && !respuesta.success) {
+            setErrores([respuesta.mensaje])
+        } else {
+            alert(`Welcome ${props.loggedUser.name}`)
+        }
     }
+    
     return(
         <>
             <h1>Login</h1>

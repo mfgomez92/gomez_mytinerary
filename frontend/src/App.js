@@ -15,7 +15,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App(props) {
-  console.log(props)
   const [reload, setReload] = useState(false)
   if (props.loggedUser) {
     var routes = <>

@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import authActions from "../redux/actions/authActions"
 import {useEffect, useState} from 'react'
-
+import swal from 'sweetalert2'
 
 const Register =(props)=>{
     const responseGoogle = (response) => {
@@ -12,6 +12,9 @@ const Register =(props)=>{
     useEffect(() => {
         props.getCountries()
     }, [])
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    })
     //Usuario a cargar en la db
     var [newUser, setNewUser] = useState({
         name:"",
@@ -20,6 +23,8 @@ const Register =(props)=>{
         password:"",
         country:""
     })
+    //Errores
+    const [errores, setErrores] = useState([])
     //capturador de los valores de los inputs 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -45,11 +50,26 @@ const Register =(props)=>{
             }
         }
     }
-    //Funcion para enviar la informacion a la db
-    const  sendUser= e =>{
+    //Funcion para enviar la informacion del formulario de registro a la db
+    const  sendUser= async e =>{
             e.preventDefault()
-            props.newUser(newUser, file)
+            if (newUser.name === '' || newUser.lastName === '' || newUser.username === ''
+            || newUser.password=== ''|| newUser.country === '') {
+                swal.fire("Fill in all fields")
+                return false
+                }else if(file ===undefined){
+                    swal.fire("Select a Profile Picture")
+                    return false
+                }
+            setErrores([])
+            const respuesta = await props.newUser(newUser, file)
+            if (respuesta && !respuesta.success) {
+                setErrores(respuesta.errores)
+            } else {
+                swal.fire("Good Job!","You have Registered in Mytinerary", 'success')
+            }
         }
+        
     return(
         <>
             <h1>Register</h1>
@@ -67,10 +87,34 @@ const Register =(props)=>{
             </div>
             <input type="text" autocomplete="nope" placeholder="Name" name="name" 
             onChange={(e)=>handleChange(e)} className="admin_input" required/>
+            <div className="errores">
+                {errores && errores.map(({path})=>{
+                    if(path[0]==="name"){
+                        return <p>The Name must be at least 4 characters up to 15 characters</p>
+                    }
+                })}
+            </div>
             <input type="text" autocomplete="nope" placeholder="Last Name" name="lastName"
             onChange={(e)=>handleChange(e)} className="admin_input" required/>
+            <div className="errores">
+                {errores && errores.map(({path})=>{
+                    if(path[0]==="lastName"){
+                        return <p>The Name must be at least 2 characters up to 20 characters</p>
+                    }
+                })}
+            </div>
             <input type="text" autocomplete="nope" placeholder="Your email address" name="username"
             onChange={(e)=>handleChange(e)}  className="admin_input" required/>
+            <div className="errores">
+                {errores && errores.map(({path})=>{
+                    if(path[0]==="username"){
+                        return <p>Enter a valid email address</p>
+                    }else if(path[0]==="usernameExist"){
+                        return <p>The email is already in use. Choose another.</p>
+                    }
+                    
+                })}
+            </div>
             <select name="country" onChange={(e)=>handleChange(e)} className="admin_input p-1">
                 <option value="" className="admin_input" selected>Select your Country</option>
                 {props.countries && props.countries.map(country => {
@@ -80,8 +124,14 @@ const Register =(props)=>{
             <input type="password" placeholder="Password for Mytinerary" name="password"
             onChange={(e)=>handleChange(e)} className="admin_input" required/>
             <div className="d-flex justify-content-center">
-                <span  data-toggle="tooltip" data-placement="left" title="At least 6 characters (cannot include spaces or special characters / %)">(?)</span>
-                <p> The password must be at least 6 characters.</p>
+                <p>The password must be 6-8 characters long.</p>
+            </div>
+            <div className="errores">
+                {errores && errores.map(({path})=>{
+                    if(path[0]==="password"){
+                        return <p>Enter a Valid Password</p>
+                    }
+                })}
             </div>
             <label for="profile-pic" className="label_input_file" >
                 <div className="d-flex flex-column align-items-center">

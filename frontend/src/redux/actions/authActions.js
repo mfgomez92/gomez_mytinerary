@@ -3,10 +3,6 @@ import axios from "axios"
 const authActions = {
     newUser: (newUser, file) => {
         return async (dispatch, getState) => {
-            if (newUser.name === '' || newUser.lastName === '' || newUser.username === ''
-                || newUser.password=== ''|| newUser.country === '') {
-             alert("Fill in all fields")
-            }
             const form = new FormData()
             form.append('name',newUser.name)
             form.append('lastName',newUser.lastName)

@@ -6,38 +6,31 @@ const path= require('path')
 
 const userController = {
     signUp: async (req, res) => {
-        var errores = []
         const {name, lastName, username,  password, country} = req.body
+        const file= req.files.file
         const userExists = await User.findOne({username: username})
         if (userExists) {
-            errores.push('The username is already in use. Choose another.')
-        }
-        if(req.files ===null ){
-            return res.status(400).json({response: "error"})
-        }
-        const file= req.files.file
-        if (errores.length === 0) {
-            const passwordHasheado = bcryptjs.hashSync(password, 10)
-            const profilePictureUbicacion= `../frontend/src/assets/profilePictures/${file.name}`
-            var newUser = new User({
-                name, lastName, username, profilePicture:profilePictureUbicacion,  password: passwordHasheado, country
-            })
-            var newUserSaved = await newUser.save()
-            var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY, {})
-        }
-
-        
+            let error =[{path:['usernameExist']}]
+            res.json({success: false, errores: error})
+          }
         file.mv(path.join(__dirname, '../frontend/src/assets/profilePictures/'+ file.name), error=>{
             if(error){
+                console.log(error)
                 return res.json({response:error})
             }
-            return res.json({success: errores.length === 0 ? true : false, 
-                errores: errores,
-                response: {token, name: newUserSaved.name, profilePicture: newUserSaved.profilePicture }})
-        } )
+        } 
+        )     
+        const passwordHasheado = bcryptjs.hashSync(password, 10)
+        const profilePictureUbicacion= `../frontend/src/assets/profilePictures/${file.name}`
+        var newUser = new User({
+            name, lastName, username, profilePicture:profilePictureUbicacion,  password: passwordHasheado, country
+        })
+        var newUserSaved = await newUser.save()
+        var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY, {})
 
-        
-        
+        return res.json({
+            success: true, 
+            response: {token, name: newUserSaved.name, profilePicture: newUserSaved.profilePicture }})      
     },
     signGoogle: async(req, res)=>{
         console.log(req.body)

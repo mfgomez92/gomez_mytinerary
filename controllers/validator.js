@@ -7,7 +7,7 @@ const validator = {
             lastName: Joi.string().trim().required().min(2).max(20),
             username: Joi.string().trim().required().email({ tlds: {allow: false} }),
             profilePicture: Joi.string().trim().required(),
-            password: Joi.string().trim().required().pattern(/(?=.*\d)/).min(5),
+            password: Joi.string().trim().required().min(6).max(8),
             rol: Joi.string().trim(),
             country: Joi.string().required()
         }) 
@@ -17,7 +17,7 @@ const validator = {
         if (!validation.error) {
             next()
         } else {
-            res.json({success: false, errores: ['There was an error in the data, please check.', console.log(validation.error)]})
+            res.json({success: false, errores: validation.error.details})
         }
     },
 

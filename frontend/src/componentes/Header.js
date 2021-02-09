@@ -1,9 +1,10 @@
 import { IconContext } from "react-icons"
 import {BiUserCircle, BiHome, BiWorld} from 'react-icons/bi'
-import {NavLink} from "react-router-dom";
-
-
-const Header=()=>{
+import {NavLink, Link} from "react-router-dom";
+import { connect } from 'react-redux'
+import React from 'react'
+import authActions from '../redux/actions/authActions'
+const Header=(props)=>{
     const despliegue = ()=>{
         document.querySelector('#menu_hamburguesa').classList.toggle('active') 
         document.querySelector('#mainListDiv').classList.toggle('show_list') 
@@ -14,8 +15,23 @@ const Header=()=>{
     //         document.querySelector('.nav').classList.add('affix'):
     //         document.querySelector('.nav').classList.remove('affix')
     //   };
-
     
+    if (props.loggedUser===null){
+        var links= <> 
+                    <NavLink to="/login"  className="nav-link">
+                        <IconContext.Provider value={{size:'1.25em'}}>
+                            <div className="d-flex align-items-center">
+                                <BiUserCircle/><div>Login</div>
+                            </div>
+                        </IconContext.Provider>
+                    </NavLink>
+                    </>
+    }else{
+    var links=    
+        <>
+
+        </>
+    }
     return(
         <>
             <nav className="nav" >
@@ -46,13 +62,7 @@ const Header=()=>{
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/login"  className="nav-link">
-                                    <IconContext.Provider value={{size:'1.25em'}}>
-                                        <div className="d-flex align-items-center">
-                                            <BiUserCircle/><div>Login</div>
-                                        </div>
-                                    </IconContext.Provider>
-                                </NavLink>
+                                {links}
                             </li>
                         </ul>
                     </div>
@@ -70,4 +80,14 @@ const Header=()=>{
 
 }
 
-export default Header
+const mapStateToProps = state => {
+    return {
+        loggedUser: state.authReducer.loggedUser
+    }
+}
+
+const mapDispatchToProps = {
+    logoutUser: authActions.logoutUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

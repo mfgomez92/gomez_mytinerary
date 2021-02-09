@@ -13,12 +13,10 @@ const app = express()
 //Me traduce las peticiones de json a objeto para poder cargarlos a la database
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
 app.use(cors())
 app.use(fileUpload())
 
-//static files
-app.use(express.static(path.join(__dirname,'frontend/public/assets')))
+
 
 app.use('/', router)
 
