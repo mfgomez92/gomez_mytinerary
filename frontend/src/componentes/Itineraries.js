@@ -3,7 +3,7 @@ import { Carousel, Container, Row, Button} from "react-bootstrap";
 import Rating from '@material-ui/core/Rating';
 import {BiMoney, BiHeart} from 'react-icons/bi'
 const Itineraries= (props) =>{
-   
+    console.log(props)
     return(
         <>
             <div className="container-fluid d-flex flex-wrap p-0">               

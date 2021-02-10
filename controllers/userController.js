@@ -13,39 +13,40 @@ const userController = {
             let error =[{path:['usernameExist']}]
             res.json({success: false, errores: error})
           }
-        file.mv(path.join(__dirname, '../frontend/src/assets/profilePictures/'+ file.name), error=>{
+        file.mv(path.join(__dirname, '../frontend/public/assets/profilePictures/'+ file.name), error=>{
             if(error){
                 console.log(error)
                 return res.json({response:error})
             }
         } 
-        )     
+        )
+        if (errores.length === 0) {     
         const passwordHasheado = bcryptjs.hashSync(password, 10)
-        const profilePictureUbicacion= `../frontend/src/assets/profilePictures/${file.name}`
+        const profilePictureUbicacion= `/assets/profilePictures/${file.name}`
         var newUser = new User({
             name, lastName, username, profilePicture:profilePictureUbicacion,  password: passwordHasheado, country
         })
         var newUserSaved = await newUser.save()
         var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY, {})
-
+    }
         return res.json({
-            success: true, 
+            success: errores.length === 0 ? true : false, 
             response: {token, name: newUserSaved.name, profilePicture: newUserSaved.profilePicture }})      
     },
     signGoogle: async(req, res)=>{
-        console.log(req.body)
         const {givenName, familyName, email,  googleId, imageUrl} = req.body
         const userExists = await User.findOne({username: email})
         if (userExists) {
             var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
+            return res.json({success: true, response: {success: true,token, name: userExists.name,profilePicture: userExists.profilePicture}})
         }else{
             var newUser = new User({
                 name:givenName, lastName:familyName, username:email, profilePicture:imageUrl, googleId
             })
             var newUserSaved = await newUser.save()
             var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY, {})
+            return res.json({success: true, response: {success: true,token, name: userExists.name,profilePicture: userExists.profilePicture}})
         }
-        return res.json({success: true, response: {token, name: userExists.name,profilePicture: userExists.profilePicture}})
 
     },
     signIn: async (req, res) => {

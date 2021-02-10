@@ -1,4 +1,5 @@
 import axios from "axios"
+import swal from 'sweetalert2'
 
 const authActions = {
     newUser: (newUser, file) => {
@@ -22,7 +23,22 @@ const authActions = {
         return async (dispatch, getState) => {
             const respuesta = await axios.post('http://localhost:4000/user/sign_google', response)
             if (!respuesta.data.success) {
-                return respuesta.data
+                swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Something happened. Try again',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                return false
+            }else{
+                swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Welcome to Mytinerary',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             }
             dispatch({type:'LOG_USER', payload: respuesta.data})
         }

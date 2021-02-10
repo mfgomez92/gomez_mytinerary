@@ -3,14 +3,15 @@ import {Button} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import authActions from "../redux/actions/authActions"
 import {useEffect, useState} from 'react'
+import swal from 'sweetalert2'
 
 
 const Login=(props)=>{
     useEffect(()=>{
         window.scrollTo(0,0)
     })
-    const responseGoogle = (response) => {
-        props.loginWithGoogle(response.profileObj);
+    const responseGoogle = async (response) => {
+       const respuesta = await props.loginWithGoogle(response.profileObj)      
       }
     //Usuario a loguearse
     var [loginUser, setLoginUser] = useState({
@@ -28,7 +29,7 @@ const Login=(props)=>{
     const  sendUser= async e =>{
         e.preventDefault()       
         if (loginUser.username === '' || loginUser.password === '') {
-            alert("All fields are required")
+            swal.fire("All fields are required")
             return false
         }
         setErrores([])
@@ -36,7 +37,13 @@ const Login=(props)=>{
         if (respuesta && !respuesta.success) {
             setErrores([respuesta.mensaje])
         } else {
-            alert(`Welcome ${props.loggedUser.name}`)
+            swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Welcome to Mytinerary',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
     }
     
@@ -59,6 +66,7 @@ const Login=(props)=>{
             onChange={(e)=>handleChange(e)}/>
             <input type="password" placeholder="Password for Mytinerary" className="admin_input" name="password"
             onChange={(e)=>handleChange(e)} />
+ 
             <Button variant="secondary" className="admin_input mx-auto mt-4" type="submit" onClick={sendUser} >
                 Login
             </Button>

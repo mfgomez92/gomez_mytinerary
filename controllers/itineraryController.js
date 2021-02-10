@@ -2,10 +2,10 @@ const Itinerary =require('../models/itinerary')
  
 const itineraryController ={
     newItinerary:(req,res)=>{
-        const {idCity,itineraryAuthorName,itineraryAuthorPic,itineraryAuthorContact,
+        const {idCity,itineraryAuthorName,itineraryAuthorPic,
             itineraryName,itineraryDescription,itineraryPrice,itineraryDuration,
             itineraryCategory,itineraryActivity}= req.body
-        const itineraryNew= new Itinerary( {idCity, itineraryAuthorName, itineraryAuthorPic, itineraryAuthorContact,
+        const itineraryNew= new Itinerary( {idCity, itineraryAuthorName, itineraryAuthorPic, 
             itineraryName, itineraryDescription,itineraryPrice, itineraryDuration,itineraryCategory,itineraryActivity})
         itineraryNew.save()
         .then(async itineraryRecorded => {

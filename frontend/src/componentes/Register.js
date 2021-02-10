@@ -85,7 +85,7 @@ const Register =(props)=>{
                 <span className="text">Or register with your email</span>
                 <span className="line mx-auto"></span> 
             </div>
-            <input type="text" autocomplete="nope" placeholder="Name" name="name" 
+            <input type="text" autoComplete="nope" placeholder="Name" name="name" 
             onChange={(e)=>handleChange(e)} className="admin_input" required/>
             <div className="errores">
                 {errores && errores.map(({path})=>{
@@ -94,7 +94,7 @@ const Register =(props)=>{
                     }
                 })}
             </div>
-            <input type="text" autocomplete="nope" placeholder="Last Name" name="lastName"
+            <input type="text" autoComplete="nope" placeholder="Last Name" name="lastName"
             onChange={(e)=>handleChange(e)} className="admin_input" required/>
             <div className="errores">
                 {errores && errores.map(({path})=>{
@@ -103,7 +103,7 @@ const Register =(props)=>{
                     }
                 })}
             </div>
-            <input type="text" autocomplete="nope" placeholder="Your email address" name="username"
+            <input type="text" autoComplete="nope" placeholder="Your email address" name="username"
             onChange={(e)=>handleChange(e)}  className="admin_input" required/>
             <div className="errores">
                 {errores && errores.map(({path})=>{
@@ -116,7 +116,7 @@ const Register =(props)=>{
                 })}
             </div>
             <select name="country" onChange={(e)=>handleChange(e)} className="admin_input p-1">
-                <option value="" className="admin_input" selected>Select your Country</option>
+                <option defaultValue className="admin_input" >Select your Country</option>
                 {props.countries && props.countries.map(country => {
                     return <option className="option-select" value={country.name}>{country.name}</option>
                 })}
@@ -133,7 +133,7 @@ const Register =(props)=>{
                     }
                 })}
             </div>
-            <label for="profile-pic" className="label_input_file" >
+            <label htmlFor="profile-pic" className="label_input_file" >
                 <div className="d-flex flex-column align-items-center">
                 <p>Select your Profile picture</p> 
                     <img className="img-fluid profile-pic-register" src={pathImage} alt="profile-pic"/>

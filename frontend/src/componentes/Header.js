@@ -2,20 +2,23 @@ import { IconContext } from "react-icons"
 import {BiUserCircle, BiHome, BiWorld} from 'react-icons/bi'
 import {NavLink, Link} from "react-router-dom";
 import { connect } from 'react-redux'
-import React from 'react'
+import React, { useState } from 'react'
 import authActions from '../redux/actions/authActions'
+
+
 const Header=(props)=>{
     const despliegue = ()=>{
         document.querySelector('#menu_hamburguesa').classList.toggle('active') 
         document.querySelector('#mainListDiv').classList.toggle('show_list') 
     } 
+    console.log(props)
     //Arreglar
     // window.onscroll = ()=> {
     //     window.scrollY > 100? 
     //         document.querySelector('.nav').classList.add('affix'):
     //         document.querySelector('.nav').classList.remove('affix')
     //   };
-    
+    const [show, setShow] = useState(true);
     if (props.loggedUser===null){
         var links= <> 
                     <NavLink to="/login"  className="nav-link">
@@ -29,7 +32,21 @@ const Header=(props)=>{
     }else{
     var links=    
         <>
-
+            <Link  className="nav-link d-flex align-items-center">
+                <img src={props.loggedUser.profilePicture} className="rounded-circle  mr-3"
+                        style={{height: "40px", width:"40px"}}/>
+                <div className="container">
+                    <div type="button" className="dropdown-toggle d-block" onClick={()=>{setShow(!show);}}>
+                        {props.loggedUser.name}
+                    </div>
+                </div>
+            </Link>
+            {!show&&
+                    <ul className="d-flex flex-column dropdown-header rounded">
+                        <li className="item-drop h3 p-2" >Profile</li>
+                        <li className="item-drop h3 p-2" >Mytineraries</li>
+                        <li className="item-drop h3 p-2" type="button" onClick={()=>props.logoutUser()} >LogOut</li>
+                    </ul>}
         </>
     }
     return(

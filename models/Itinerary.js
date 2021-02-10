@@ -4,7 +4,6 @@ const itinerarySchema= new mongoose.Schema({
     idCity:{type:mongoose.Schema.ObjectId, ref: 'city'},
     itineraryAuthorName:{type:String, required:true },
     itineraryAuthorPic:{type:String, required:true},
-    itineraryAuthorContact:String,
     itineraryName:{type:String, required:true},
     itineraryDescription:String,
     itineraryPrice:{type:Number, min:1,max:5, required:true},
@@ -16,13 +15,12 @@ const itinerarySchema= new mongoose.Schema({
         activityPic:{type:String, required:true},
         activityDescription:{type:String, required:true}
     }],
-    itineraryLike:{type:Number, default: 0},
-    itineraryViews:{type:Number, default:0},
-    itineraryCommentary:{
+    itineraryLike:{type:[String]},
+    itineraryCommentary:[{
         commentaryAuthor:String,
         commentaryPic:String,
         commentaryDescription:String
-    }
+    }]
 })
 
 

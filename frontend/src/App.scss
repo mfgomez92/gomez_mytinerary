@@ -10,6 +10,20 @@ body {
     font-size: 10px;
     background-color: rgba(237,22,80, .05);
 }
+/* Header */
+.dropdown-header{
+    background: white;
+    height: auto !important;
+}
+.item-drop{
+    height: auto !important;
+    
+}
+.item-drop:hover{
+    cursor: pointer;
+    background-color: whitesmoke;
+
+}
 /* Navbar section */
 .nav {
     width: 100%;
