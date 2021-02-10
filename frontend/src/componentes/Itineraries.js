@@ -1,9 +1,8 @@
 import { connect } from "react-redux"
-import { Carousel, Container, Row, Button} from "react-bootstrap";
-import Rating from '@material-ui/core/Rating';
-import {BiMoney, BiHeart} from 'react-icons/bi'
+import {Container, Row} from "react-bootstrap";
+import Itinerary from "./Itinerary";
+
 const Itineraries= (props) =>{
-    console.log(props)
     return(
         <>
             <div className="container-fluid d-flex flex-wrap p-0">               
@@ -14,47 +13,7 @@ const Itineraries= (props) =>{
                                 <h1 className="display-3">Popular Itineraries</h1>
                             </Row>
                         </Container>
-                        {props.itineraries.map(itinerary=>{
-                            return(
-                                <>
-                                    <div className="row justify-content-center p-5 mx-auto ">
-                                        <div className="col-4">
-                                        <Carousel fade={true} controls={false} indicators={false}>
-                                        {itinerary.itineraryActivity.map(({activityName, activityPic, index})=>(
-                                            <Carousel.Item>
-                                                <div key={index} className="foto_carrusel m-2" 
-                                                style={{backgroundImage: `url(${activityPic})`}}>
-                                                    <p>{activityName}</p>
-                                                </div>
-                                            </Carousel.Item>    
-                                                ))}
-                                        </Carousel>
-                                        </div>
-                                        <div className="col-4 p-5 d-flex flex-column border-bottom border-secondary">
-                                            <div className="d-flex justify-content-between border-bottom align-items-center">
-                                                <h1 className="font-weight-bold">{itinerary.itineraryName}</h1>
-                                                <div>
-                                                    <Rating name="primary" icon={<BiMoney/>} name="read-only" value={itinerary.itineraryPrice} readOnly size="large" emptyIcon={<BiMoney/>} />
-                                                    <p className="h5">{`Estimated Duration ${itinerary.itineraryDuration}hs.`}</p>
-                                                </div>
-                                                <Button variant="secondary" className="btn-mz rounded-circle" >
-                                                    <BiHeart/>
-                                                </Button>
-                                            </div>
-                                            <p className="h3 mt-3">{itinerary.itineraryDescription}</p>
-                                            <div className="d-flex">
-                                                {itinerary.itineraryCategory.map(category=>{
-                                                   return <p className="h4 bg-secondary m-2 p-1 rounded text-white">#{category}</p>})}
-                                            </div>
-                                            <Button variant="secondary" className="btn-mz m-auto" >
-                                                See all Comments
-                                            </Button>
-                                            
-                                        </div>
-                                    </div>
-                                </>
-                                )   
-                            })
+                        {props.itineraries.map(itinerary=> <Itinerary itinerary={itinerary}/>)
                         }
                     </div>
                     <div className="col-12">

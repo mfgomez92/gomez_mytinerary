@@ -11,7 +11,6 @@ const Header=(props)=>{
         document.querySelector('#menu_hamburguesa').classList.toggle('active') 
         document.querySelector('#mainListDiv').classList.toggle('show_list') 
     } 
-    console.log(props)
     //Arreglar
     // window.onscroll = ()=> {
     //     window.scrollY > 100? 
