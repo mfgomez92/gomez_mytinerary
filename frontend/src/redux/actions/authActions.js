@@ -3,6 +3,7 @@ import swal from 'sweetalert2'
 
 const authActions = {
     newUser: (newUser, file) => {
+        console.log(newUser)
         return async (dispatch, getState) => {
             const form = new FormData()
             form.append('name',newUser.name)
@@ -45,6 +46,7 @@ const authActions = {
     },
     loginUser: (user) => {
         return async (dispatch, getState) => {
+            console.log(user)
             const respuesta = await axios.post('http://localhost:4000/user/signin', user)
             if (!respuesta.data.success) {
                 return respuesta.data

@@ -17,6 +17,7 @@ const itinerarySchema= new mongoose.Schema({
     }],
     itineraryLike:{type:[String]},
     itineraryCommentary:[{
+        name:String,
         commentaryAuthor:String,
         commentaryPic:String,
         commentaryDescription:String

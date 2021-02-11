@@ -9,6 +9,7 @@ export function authReducer (state = initialState, action) {
             localStorage.setItem('name', action.payload.response.name)
             localStorage.setItem('profilePicture', action.payload.response.profilePicture)
             localStorage.setItem('token', action.payload.response.token)
+            localStorage.setItem('username', action.payload.response.username)
             return {
                 ...state,
                 loggedUser: action.payload.response

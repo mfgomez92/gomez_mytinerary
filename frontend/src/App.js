@@ -16,27 +16,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {
   const [reload, setReload] = useState(false)
-  console.log(props.loggedUser)
   if (props.loggedUser) {
     var routes = <>
-        {console.log("if")}
         <Route exact path="/" component={HomePage} />
         <Route exact path="/cities" component={CitiesPage} />
         <Route path="/cities/:city" component={ItineraryPage} />
         <Redirect to="/" />
     </>
   } else if (localStorage.getItem('token')) { 
-    {console.log("else if")}
-
       props.logFromLS(localStorage.getItem('token'))
       .then(respuesta => {
         if (respuesta === '/') setReload(!reload)
-        console.log(respuesta) 
       })
   } else {
     var routes = <>
-            {console.log("else")}
-
       <Route exact path="/" component={HomePage} />
       <Route exact path="/cities" component={CitiesPage} />
       <Route path="/cities/:city" component={ItineraryPage} />

@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     rol: {type: String, requerid:true, default:"personal account"},
     country:{type:String, required:true, default:"USA"},
     googleId:{type:String, default:null}
-   //ver mailbox, activities, itineraries
 })
 
 const User = mongoose.model('user', userSchema)

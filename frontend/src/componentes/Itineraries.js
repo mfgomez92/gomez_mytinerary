@@ -13,8 +13,7 @@ const Itineraries= (props) =>{
                                 <h1 className="display-3">Popular Itineraries</h1>
                             </Row>
                         </Container>
-                        {props.itineraries.map(itinerary=> <Itinerary itinerary={itinerary}/>)
-                        }
+                        {props.itineraries.map((itinerary, index)=> <Itinerary key={index} itinerary={itinerary}/>)}
                     </div>
                     <div className="col-12">
                         <Container  className="bg-secondary mt-5 mb-3 rounded">
@@ -47,7 +46,9 @@ const Itineraries= (props) =>{
 const mapStateToProps = state => {
     return {
         activities: state.citiesReducer.activities,
-        itineraries: state.citiesReducer.itineraries
+        itineraries: state.citiesReducer.itineraries,
+        comment: state.commentReducer.comment
+
     }
 }
 
