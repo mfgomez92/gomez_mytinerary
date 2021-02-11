@@ -1,6 +1,5 @@
 import { connect } from "react-redux"
 import commentActions from "../redux/actions/commentActions"
-import citiesActions from "../redux/actions/citiesActions"
 import { useState, useEffect } from "react"
 import { IconContext } from "react-icons"
 import {BiPaperPlane,BiTrash, BiEdit, BiBlock} from 'react-icons/bi'
@@ -11,7 +10,7 @@ const Comment =(props)=> {
     const [visible, setVisible] = useState(false)
     const [updatedComment, setUpdatedComment] = useState('')
     const [loggedUser, setLoggedUser] = useState('')
-
+    const [reload, setReload] = useState(false)
     const edit =(e)=> {
         setVisible(!visible)  
         setUpdatedComment(commentaryDescription)
@@ -20,6 +19,7 @@ const Comment =(props)=> {
     const updateComment= async () => {
       await props.updateComment(updatedComment, props.comment._id, props.id, props.loggedUser.token)
       setVisible(!visible)
+      setReload(!reload)
     }
 
     const deleteComment =async()=>{
@@ -32,6 +32,7 @@ const Comment =(props)=> {
       }).then((result) => {
          if  (result.isConfirmed) {
           borrarComentario()
+          setReload(!reload)
 
         } 
       })
@@ -45,7 +46,7 @@ const Comment =(props)=> {
       if(props.loggedUser){
          setLoggedUser(props.loggedUser.username)
       }
-    }, [])
+    }, [reload])
     return (
         <div className="container p-2 m-1">
           <div className="row mx-auto justify-content-center ">
@@ -97,7 +98,6 @@ const mapStateToProps = state => {
       
 const mapDispatchToProps = {
     deleteComment: commentActions.deleteComment,
-    getItineraries: citiesActions.getItineraries,
     updateComment: commentActions.updateComment
 }
       

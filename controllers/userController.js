@@ -6,6 +6,7 @@ const path= require('path')
 
 const userController = {
     signUp: async (req, res) => {
+        const errores=[]
         const {name, lastName, username,  password, country} = req.body
         const file= req.files.file
         const userExists = await User.findOne({username: username})

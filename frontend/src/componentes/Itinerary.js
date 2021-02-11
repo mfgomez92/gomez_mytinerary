@@ -16,9 +16,11 @@ const Itinerary= (props) =>{
     //props.itinerary me llegan del componente padre Itineraries
     const {itineraryActivity, itineraryName,itineraryCommentary, itineraryPrice, itineraryDuration, itineraryDescription,itineraryCategory, _id, idCity}= props.itinerary
     //mostrar/ocultar los comentarios
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(true)
+    const [reload, setReload] = useState(false)
+
     //guardar el contenido del comentario
-    const [newComment, setNewComment] = useState('')
+    let [newComment, setNewComment] = useState({})
     //funcion para ir cargando el contenido del comentario a la const newComment a traves del setNewComment
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -35,7 +37,9 @@ const Itinerary= (props) =>{
         // este controlador va a utlilizar el id q pasó la accion para buscar dentro de la collecion itinerary el itinerario correspondiente y lo va a actualizar utilizzando un operador de mongo  llamado $push. este operador agrega al array de comentarios, un objeto con las propiedades de : username, profilePicture y comment. Al tratarse de un objeto nuevo, mongo automaticamente le agrega un _id.
         await props.newComment(newComment.comment,props.loggedUser.token,_id)
         //seteo nuevamente a comment para que el value del input este vavio y vualva aparecer el placeholder
-        setNewComment("")
+        setNewComment=('')
+        setReload(!reload)
+
 
       }
 
@@ -43,13 +47,19 @@ const Itinerary= (props) =>{
       useEffect(()=> {
         if(props.loggedUser){
           setLiked(props.loggedUser.username)
+          
         }
-      },[])
+      },[reload])
       const addLike =()=> {
         props.like(props.itinerary._id, props.loggedUser.token)
+        setReload(!reload)
+
+
       }
       const dislike =()=> {
          props.dislike(props.itinerary._id, props.loggedUser.token)
+         setReload(!reload)
+
       }
     return (
         <>
@@ -97,9 +107,9 @@ const Itinerary= (props) =>{
                         {itineraryCommentary.length ===0?<p className="admin_input rounded-pill text-center bg-light mx-auto">Be first to comment</p> : 
                         
                         itineraryCommentary.map((comment, index) => {
-                        return <Comment key={index} comment={comment} id={_id} cityId={idCity}/>}) }
+                        return <Comment key={index} comment={comment} id={_id} />}) }
                         <div className="d-flex justify-content-center">
-                            <input type="text" name="comment" className="admin_input"
+                            <input type="text" name="comment" autoComplete="off" className="admin_input"
                             placeholder={!props.loggedUser ?
                                  "You need to be logged to comment!" :
                                  "Leave your comment"} 

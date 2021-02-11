@@ -11,7 +11,7 @@ const SectionItineraries =(props)=> {
     const valor = props.activities.length
      useEffect(()=>{
          fetchear_data()
-     },[props.id])
+     },[props.id, props.comment, props.like])
      async function fetchear_data() {
         await props.getItineraries(props.id)
         await props.getCity(props.id)   
@@ -42,7 +42,9 @@ const mapStateToProps = state => {
     return {
         city:state.citiesReducer.city,
         activities:state.citiesReducer.activities,
-        itineraries: state.citiesReducer.itineraries
+        itineraries: state.citiesReducer.itineraries,
+        comment: state.commentReducer.comment,
+        like: state.likeReducer.like
     }
 }
 const mapDispatchToProps = {
