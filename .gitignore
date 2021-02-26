@@ -1,2 +1,7 @@
 /frontend/node_modules
 node_modules
+.env
+
+
+# MONGODB_URI=mongodb+srv://matiasgomez:34921901mfg@cluster0.torgr.mongodb.net/mytinerary?retryWrites=true&w=majority
+# SECRET_KEY=correr corre cualquiera jugar al fútbol es más complicado
